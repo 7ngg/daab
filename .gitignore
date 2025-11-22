@@ -5,3 +5,7 @@
 .vscode/
 
 *.user
+*.db
+*.sqlite
+
+data.*
