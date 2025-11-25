@@ -1,10 +1,11 @@
 using Daab.Modules.ScientistsDirectory.Domain;
 using FastEndpoints;
+using MediatR;
 
 namespace Daab.Modules.ScientistsDirectory.Features.Scientists.GetAll;
 
-public class GetAllScientistsEndpoint(IScientistRepository scientistRepository)
-    : Endpoint<GetAllScientistsRequest, GetAllScientistsResponse>
+public class GetAllScientistsEndpoint(IMediator mediator)
+    : EndpointWithoutRequest<GetAllScientistsResponse>
 {
     public override void Configure()
     {
@@ -13,12 +14,12 @@ public class GetAllScientistsEndpoint(IScientistRepository scientistRepository)
     }
 
     public override async Task HandleAsync(
-        GetAllScientistsRequest req,
         CancellationToken cancellationToken
     )
     {
-        var scientists = await scientistRepository.GetAsync(cancellationToken: cancellationToken);
-
-        await Send.OkAsync(new GetAllScientistsResponse(scientists), cancellationToken);
+        // var command = new GetAllScientistsQuery();
+        // var scientists = await mediator.Send(command, cancellationToken);
+        //
+        // await Send.OkAsync(new GetAllScientistsResponse(scientists), cancellationToken);
     }
 }
