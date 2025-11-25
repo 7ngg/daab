@@ -8,7 +8,7 @@ public class RepositoryBase<TEntity>(DbContext context) : IRepository<TEntity>
 {
     protected DbSet<TEntity> Set = context.Set<TEntity>();
 
-    public async Task<IEnumerable<TEntity>> GetAsync(
+    public virtual async Task<IEnumerable<TEntity>> GetAsync(
         Expression<Func<TEntity, bool>>? filter,
         CancellationToken cancellationToken
     )
@@ -22,17 +22,17 @@ public class RepositoryBase<TEntity>(DbContext context) : IRepository<TEntity>
         return await query.ToListAsync(cancellationToken);
     }
 
-    public async ValueTask<TEntity?> FindAsync(object id, CancellationToken cancellationToken)
+    public virtual async ValueTask<TEntity?> FindAsync(object id, CancellationToken cancellationToken)
     {
-        return await Set.FindAsync([id], cancellationToken);
+        return await Set.FindAsync([id], cancellationToken: cancellationToken);
     }
 
-    public async ValueTask InsertAsync(TEntity entity, CancellationToken cancellationToken)
+    public virtual async ValueTask InsertAsync(TEntity entity, CancellationToken cancellationToken)
     {
         await Set.AddAsync(entity, cancellationToken);
     }
 
-    public async Task SaveChangesAsync(CancellationToken cancellationToken)
+    public virtual async Task SaveChangesAsync(CancellationToken cancellationToken)
     {
         await context.SaveChangesAsync(cancellationToken);
     }

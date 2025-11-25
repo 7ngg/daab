@@ -4,10 +4,11 @@ namespace Daab.SharedKernel;
 
 public interface IRepository<TEntity>
 {
-    ValueTask InsertAsync(TEntity entity, CancellationToken cancellationToken);
+    ValueTask InsertAsync(TEntity entity, CancellationToken cancellationToken = default);
     Task<IEnumerable<TEntity>> GetAsync(
         Expression<Func<TEntity, bool>>? filter = null,
         CancellationToken cancellationToken = default
     );
-    Task SaveChangesAsync(CancellationToken cancellationToken);
+    Task SaveChangesAsync(CancellationToken cancellationToken = default);
+    ValueTask<TEntity?> FindAsync(object id, CancellationToken cancellationToken = default);
 }

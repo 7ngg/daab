@@ -37,6 +37,7 @@ try
         app.MapScalarApiReference();
     }
 
+    app.UseIdentity();
     app.UseScientistsDirectory();
 
     app.Run();

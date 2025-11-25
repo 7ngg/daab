@@ -22,7 +22,7 @@ public static class DependencyInjection
         {
             var config = builder.Configuration;
             builder.Services.AddDbContext<ScientistsContext>(options =>
-                options.UseSqlite(config.GetConnectionString("local"))
+                options.UseSqlite(config.GetConnectionString("scientists"))
             );
 
             builder.Services.AddScoped<IScientistRepository, ScientistRepository>();
