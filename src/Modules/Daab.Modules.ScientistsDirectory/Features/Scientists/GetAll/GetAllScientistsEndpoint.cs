@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Daab.Modules.ScientistsDirectory.Features.Scientists.GetAll;
 
-public class GetAllScientistsEndpoint(IMediator mediator, ILogger<GetAllScientistsEndpoint> logger)
+public class GetAllScientistsEndpoint()
     : EndpointWithoutRequest<GetAllScientistsResponse>
 {
     public override void Configure()
