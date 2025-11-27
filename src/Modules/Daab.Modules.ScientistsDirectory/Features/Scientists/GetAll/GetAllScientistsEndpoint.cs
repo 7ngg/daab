@@ -1,6 +1,4 @@
 using FastEndpoints;
-using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Daab.Modules.ScientistsDirectory.Features.Scientists.GetAll;
 
